@@ -1,0 +1,4 @@
+#Sat Feb 05 03:22:03 COT 2022
+base.0=D\:\\2022\\peritosapp\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
