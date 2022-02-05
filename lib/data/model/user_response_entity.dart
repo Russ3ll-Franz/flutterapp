@@ -1,22 +1,32 @@
 import 'dart:convert';
 import 'package:peritosapp/data/model/user_entity.dart';
-import 'package:peritosapp/generated/json/base/json_field.dart';
-import 'package:peritosapp/generated/json/user_response_entity.g.dart';
 
-@JsonSerializable()
+import 'package:meta/meta.dart';
+
+UserResponseEntity userResponseFromJson(String str) =>
+    UserResponseEntity.fromJson(json.decode(str));
+
+String userResponseToJson(UserResponseEntity data) =>
+    json.encode(data.toJson());
+
 class UserResponseEntity {
-  bool? status;
-  String? message;
-  UserEntity? user;
-  UserResponseEntity();
+  final bool status;
+  final String message;
+  final UserEntity user;
+
+  UserResponseEntity({
+    required this.status,
+    required this.message,
+    required this.user,
+  });
 
   factory UserResponseEntity.fromJson(Map<String, dynamic> json) =>
-      $UserResponseEntityFromJson(json);
+      UserResponseEntity(
+        status: json["status"],
+        message: json["message"],
+        user: UserEntity.fromJson(json["user"]),
+      );
 
-  Map<String, dynamic> toJson() => $UserResponseEntityToJson(this);
-
-  @override
-  String toString() {
-    return jsonEncode(this);
-  }
+  Map<String, dynamic> toJson() =>
+      {"status": status, "message": message, "user": user.toJson()};
 }
